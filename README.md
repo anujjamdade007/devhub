@@ -29,7 +29,7 @@
 ### Run it yourself
 ```sh
 git clone https://github.com/anujjamdade007/devhub.git
-cd devSearch 1
+cd devhub
 pip install - r requirements.txt
 ```
 
