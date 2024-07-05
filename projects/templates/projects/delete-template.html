@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content%}
+
+<div class="auth">
+    <div class="card">
+        <form method="POST">
+            {% csrf_token %}
+            <p>Are You Sure To delete the <span class="fw-bold">"{{project}} {{skill.name}}" </span></p>
+            <div class="auth__actions">
+                <a href="{% url 'user_account' %}" class="btn btn-primary"><i>Go To Home</i></a>
+                <button type="submit" class="btn btn-danger" ><i class="fa fa-trash"></i> Confirm Delete</button>
+            </div>
+           
+        </form>
+    </div>
+    
+    
+</div>
+
+
+
+{% endblock content%}

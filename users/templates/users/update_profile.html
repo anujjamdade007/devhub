@@ -1,0 +1,38 @@
+{%  extends 'main.html' %}
+
+
+{% block content %}
+
+
+<div class="auth">
+    <div class="card">
+      
+      <div class="auth__header text-center">
+        <h3>Update Your Profile Here</h3>
+      </div>
+
+      <form method="POST" enctype="multipart/form-data" class="form auth__form">
+        {% csrf_token %}
+        <!-- Input:Text -->
+        {% for field in form %}
+        <div class="form__field">
+          <label for="formInput#text">{{field.label}}</label>
+          {{field}}
+
+        </div>
+        {% endfor %}
+
+
+
+
+        
+        <div class="auth__actions">
+          <input class="btn btn--sub btn--lg" type="submit" value="Update Profile" />
+        </div>
+      </form>
+      
+
+    </div>
+</div>
+
+{% endblock content %}

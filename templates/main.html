@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
+  <!-- Icon - IconMonster -->
+  <link rel="stylesheet" href="https://cdn.iconmonstr.com/1.3.0/css/iconmonstr-iconic-font.min.css" />
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+   <!-- Icon - font-awesome -->
+   <script src="https://kit.fontawesome.com/ac5a6a82ed.js" crossorigin="anonymous"></script>
+  <!-- Mumble UI -->
+  <link rel="stylesheet" href="{% static 'uikit/styles/uikit.css' %}" />
+  <!-- Dev Search UI -->
+  <link rel="stylesheet" href="{% static 'styles/apps.css' %}" />
+  
+
+  <title>DevSearch - Connect with Developers!</title>
+</head>
+
+<body>
+  <!-- Header Section -->
+  <header class="header">
+    <div class="container container--narrow">
+      <a href="/" class="header__logo">
+        <img src="{% static 'images/logo.svg' %}" alt="DevSearch Logo" />
+      </a>
+      <nav class="header__nav">
+        <input type="checkbox" id="responsive-menu" />
+        <label for="responsive-menu" class="toggle-menu">
+          <span>Menu</span>
+          <div class="toggle-menu__lines"></div>
+        </label>
+        <ul class="header__menu">
+          <li class="header__menuItem"><a href="{% url 'users' %}">Developers</a></li>
+          <li class="header__menuItem"><a href="{% url 'projects' %}">Projects</a></li>
+          <li class="header__menuItem"><a href="">Inbox</a></li>
+          
+          {% if request.user.is_authenticated %}
+          <li class="header__menuItem"><a href="{% url 'user_account' %}">My Profile</a></li>
+          <li class="header__menuItem"><a href="{% url 'logout' %}" class="btn btn--sub">Logout</a></li>
+          {% else %}
+          <li class="header__menuItem"><a href="{% url 'login' %}" class="btn btn--sub">Login/Sign Up</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+
+  </header>
+
+{% if messages %}
+{% for message in messages %}
+  <div class="alert alert--{{ message.tags }}"
+     style="position: absolute; top: 6em; left: 50%; z-index: 9; transform: translate(-50%);">
+    <p class="alert__message">{{ message }}</p>
+    <span class="alert__close" onclick="this.parentElement.style.display='none';">&times;</span>
+</div>
+{% endfor %}
+{% endif %}
+  <!-- Main Section -->
+  {% block content%}
+
+  {% endblock content %}
+
+
+  
+</body>
+<script src="{% static 'uikit/app.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+</html>
